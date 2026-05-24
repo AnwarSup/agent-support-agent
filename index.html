@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Support Agent — AI Customer Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Nunito',sans-serif;background:#1a0a12;color:#fecdd3;min-height:100vh}
+.rose{background-image:radial-gradient(at 30% 40%,rgba(244,63,94,0.1) 0,transparent 50%),radial-gradient(at 70% 60%,rgba(251,113,133,0.06) 0,transparent 50%)}
+.card{background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:16px;transition:all .3s}
+.card:hover{border-color:rgba(244,63,94,0.4);box-shadow:0 0 30px rgba(244,63,94,0.08)}
+.msg{padding:12px 16px;border-radius:16px;max-width:80%;font-size:14px}
+.msg-bot{background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);border-bottom-left-radius:4px}
+.msg-user{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-bottom-right-radius:4px;margin-left:auto}
+</style>
+</head>
+<body class="rose">
+<div class="max-w-7xl mx-auto px-6 py-8">
+  <div class="flex items-center gap-4 mb-8">
+    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-600 flex items-center justify-center">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+    </div>
+    <div><h1 class="text-2xl font-bold text-white">Crypto Support Agent</h1><p class="text-xs text-rose-400 tracking-wider">AI CUSTOMER INTELLIGENCE</p></div>
+  </div>
+  <div class="grid grid-cols-4 gap-4 mb-6">
+    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Tickets Today</p><p class="text-3xl font-bold">1,247</p></div>
+    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Auto-Resolved</p><p class="text-3xl font-bold text-emerald-400">89<span class="text-lg">%</span></p></div>
+    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Avg Response</p><p class="text-3xl font-bold">8<span class="text-lg">sec</span></p></div>
+    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">CSAT Score</p><p class="text-3xl font-bold text-rose-400">4.8<span class="text-lg">/5</span></p></div>
+  </div>
+  <div class="grid grid-cols-3 gap-4 mb-6">
+    <div class="col-span-2 card p-6">
+      <h3 class="text-sm font-semibold text-rose-300 mb-4">Live Support Chat</h3>
+      <div class="space-y-3 mb-4">
+        <div class="msg msg-user"><p class="text-sm">I sent ETH to the wrong address, can you help?</p></div>
+        <div class="msg msg-bot"><p class="text-sm text-rose-200">I understand this is stressful. Let me check the transaction status. Could you share the transaction hash? I'll trace the funds and check if recovery is possible.</p></div>
+        <div class="msg msg-user"><p class="text-sm">0x7a25...89bc</p></div>
+        <div class="msg msg-bot"><p class="text-sm text-rose-200">I've traced your 2.5 ETH transfer. The destination address is a known exchange deposit address (Binance). I'm initiating a recovery request with their support team. Typical recovery time: 3-5 business days. I'll create a ticket and notify you of progress.</p></div>
+      </div>
+      <div class="flex gap-2">
+        <input type="text" placeholder="Type your message..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white outline-none focus:border-rose-400">
+        <button class="px-4 py-2 rounded-xl bg-rose-500 text-white text-sm font-semibold hover:bg-rose-400 transition">Send</button>
+      </div>
+    </div>
+    <div class="card p-6">
+      <h3 class="text-sm font-semibold text-rose-300 mb-4">Top Issues</h3>
+      <div class="space-y-3">
+        <div><div class="flex justify-between text-xs mb-1"><span>Wrong address</span><span class="text-rose-400">34%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-rose-500" style="width:34%"></div></div></div>
+        <div><div class="flex justify-between text-xs mb-1"><span>Stuck transaction</span><span class="text-rose-400">28%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-pink-500" style="width:28%"></div></div></div>
+        <div><div class="flex justify-between text-xs mb-1"><span>Wallet access</span><span class="text-rose-400">22%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-fuchsia-500" style="width:22%"></div></div></div>
+        <div><div class="flex justify-between text-xs mb-1"><span>Swap failure</span><span class="text-rose-400">16%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-purple-500" style="width:16%"></div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card p-6">
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center"><svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg></div>
+      <div><h3 class="text-sm font-semibold text-white">Agent Intelligence</h3><p class="text-xs text-gray-500">MiMo-powered support automation</p></div>
+    </div>
+    <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
+      <p class="text-sm font-medium mb-1">Escalation Pattern Detected</p>
+      <p class="text-xs text-gray-400">12 tickets in last hour about "failed swap on Uniswap V4". Cross-referencing with on-chain data shows Uniswap V4 router experiencing 3.2% revert rate on ETH→USDC path. Agent auto-created status page update and proactive notification to 847 affected users.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
