@@ -69,3 +69,27 @@ def agent_run(payload: dict):
     subject = payload.get("subject") or payload.get("scenario") or "reviewer demo"
     return run_pipeline_sync(PROJECT_NAME if 'PROJECT_NAME' in globals() else "MiMo Agent Product", {"subject": subject, "payload": payload})
 
+# --- Product-grade domain endpoints: added V4/V5 upgrade ---
+try:
+    from backend.domain.intelligence import (
+        analyze_domain, batch_domain_report,
+        SIGNALS as DOMAIN_SIGNALS, ACTIONS as DOMAIN_ACTIONS,
+    )
+except Exception:  # pragma: no cover
+    analyze_domain = batch_domain_report = None
+    DOMAIN_SIGNALS = DOMAIN_ACTIONS = []
+
+if FastAPI and analyze_domain:
+    @app.get("/domain/signals")
+    def domain_signals():
+        return {"product": 'Agent Support Agent', "signals": DOMAIN_SIGNALS, "actions": DOMAIN_ACTIONS}
+
+    @app.post("/domain/analyze")
+    def domain_analyze(payload: dict):
+        scenario = payload.get("scenario")
+        signals = payload.get("signals") or {}
+        return analyze_domain(scenario, signals).to_dict()
+
+    @app.get("/domain/demo")
+    def domain_demo():
+        return {"product": 'Agent Support Agent', "reports": batch_domain_report()}

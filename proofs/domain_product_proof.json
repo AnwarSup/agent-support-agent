@@ -1,0 +1,30 @@
+{
+  "product": "Agent Support Agent",
+  "repo": "https://github.com/AnwarSup/agent-support-agent",
+  "upgrade": "V5 domain productization",
+  "domain": "support operations / customer automation",
+  "signals": [
+    "ticket_age_hours",
+    "sentiment_risk",
+    "sla_minutes_left",
+    "repeat_contact",
+    "refund_probability",
+    "handoff_need"
+  ],
+  "scenarios": [
+    "Customer reports failed payment and angry follow-up",
+    "VIP user hits setup error before renewal deadline",
+    "Bug report lacks logs but SLA is close",
+    "Refund request with repeated support contacts"
+  ],
+  "endpoints": [
+    "/domain/signals",
+    "/domain/analyze",
+    "/domain/demo",
+    "/agent-run"
+  ],
+  "token_evidence": {
+    "total_estimated_tokens": 36184,
+    "source": "deterministic proof budget + existing MiMo pipeline"
+  }
+}
