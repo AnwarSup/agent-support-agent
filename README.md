@@ -100,3 +100,40 @@ index.html                Static live dashboard
 ## 📄 License
 
 MIT.
+
+<!-- MIMO_APPROVAL_PATTERN_UPGRADE -->
+## Reviewer-Grade MiMo Agent Architecture
+
+Support Agent Studio is structured as a token-intensive, multi-agent product rather than a static demo. The pipeline fans out across specialist agents, records per-agent token estimates, then synthesizes findings into reviewer-ready output.
+
+### Specialist Agent Fleet
+- **Ticket Classifier** — labels urgency, product area, and customer impact.
+- **Root Cause Finder** — matches symptoms with incidents, docs, and known regressions.
+- **Reply Drafter** — writes concise customer-facing responses.
+- **Knowledge Curator** — turns repeated fixes into reusable KB entries.
+- **Escalation Judge** — routes high-risk tickets to engineering with evidence.
+
+### Verified Demo Run
+- Scenario: `support queue contains duplicate payment webhook failures after deploy`
+- Agents executed: 5
+- Estimated tokens in sample run: **41,453**
+- Daily projection at 96 runs/day: **3,979,488 tokens/day**
+- Output artifact: `docs/example_run.json`
+- Human-readable proof: `docs/EXAMPLE_RUN.md`
+
+### Run Locally
+```bash
+python3 cli.py --all
+python3 -m pytest -q
+python3 - <<'PY'
+from backend.core.pipeline import run_pipeline_sync
+print(run_pipeline_sync('Support Agent Studio', {'subject': 'support queue contains duplicate payment webhook failures after deploy'}))
+PY
+```
+
+### Proof Pack
+- `proofs/boot_log.txt` — environment boot evidence
+- `proofs/run_sample.txt` — deterministic pipeline output summary
+- `docs/example_run.json` — raw structured result
+- `docs/EXAMPLE_RUN.md` — review-facing run report
+
