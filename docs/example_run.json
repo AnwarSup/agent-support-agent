@@ -3,120 +3,120 @@
   "status": "completed",
   "mode": "deterministic-reviewer-demo",
   "latency_ms": 0,
-  "summary": "5 specialist agents completed; 3 high-priority findings; 41453 estimated tokens.",
+  "summary": "5 specialist agents completed; 2 high-priority findings; 49152 estimated tokens.",
   "token_usage": {
     "project": "Support Agent Studio",
     "events": [
       {
-        "timestamp": "2026-05-25T20:14:50.921383+00:00",
+        "timestamp": "2026-05-25T20:21:02.722978+00:00",
         "project": "Support Agent Studio",
         "agent": "Liquidity Scout",
-        "estimated_tokens": 8114,
-        "severity": "high"
-      },
-      {
-        "timestamp": "2026-05-25T20:14:50.921405+00:00",
-        "project": "Support Agent Studio",
-        "agent": "Exploit Sentinel",
-        "estimated_tokens": 10077,
-        "severity": "medium"
-      },
-      {
-        "timestamp": "2026-05-25T20:14:50.921412+00:00",
-        "project": "Support Agent Studio",
-        "agent": "Oracle Auditor",
-        "estimated_tokens": 4987,
+        "estimated_tokens": 8315,
         "severity": "critical"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.921415+00:00",
+        "timestamp": "2026-05-25T20:21:02.723000+00:00",
         "project": "Support Agent Studio",
-        "agent": "Treasury Guardian",
-        "estimated_tokens": 9522,
-        "severity": "high"
+        "agent": "Exploit Sentinel",
+        "estimated_tokens": 13787,
+        "severity": "critical"
       },
       {
-        "timestamp": "2026-05-25T20:14:50.921419+00:00",
+        "timestamp": "2026-05-25T20:21:02.723009+00:00",
+        "project": "Support Agent Studio",
+        "agent": "Oracle Auditor",
+        "estimated_tokens": 7868,
+        "severity": "low"
+      },
+      {
+        "timestamp": "2026-05-25T20:21:02.723015+00:00",
+        "project": "Support Agent Studio",
+        "agent": "Treasury Guardian",
+        "estimated_tokens": 8805,
+        "severity": "medium"
+      },
+      {
+        "timestamp": "2026-05-25T20:21:02.723020+00:00",
         "project": "Support Agent Studio",
         "agent": "Incident Reporter",
-        "estimated_tokens": 8753,
+        "estimated_tokens": 10377,
         "severity": "medium"
       }
     ],
-    "total_estimated_tokens": 41453,
-    "daily_projection_tokens": 3979488,
+    "total_estimated_tokens": 49152,
+    "daily_projection_tokens": 4718592,
     "agent_count": 5
   },
   "findings": [
     {
       "agent": "Liquidity Scout",
       "role": "tracks pool depth, volatility spikes, and suspicious flow concentration",
-      "severity": "high",
-      "confidence": 0.68,
-      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: support queue contains duplicate payment webhook failures after deploy. Risk pattern=high confidence=0.68.",
+      "severity": "critical",
+      "confidence": 0.64,
+      "finding": "Liquidity Scout reviewed DeFi risk monitoring signal: duplicate payment webhook failures after deploy. Risk pattern=critical confidence=0.64.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=c85b163e40",
+        "subject_hash=31dcbc5a1e",
         "agent_stage=1"
       ],
-      "recommendation": "Run liquidity scout follow-up pass, capture artifacts, then prioritize high items first.",
-      "estimated_tokens": 8114
+      "recommendation": "Run liquidity scout follow-up pass, capture artifacts, then prioritize critical items first.",
+      "estimated_tokens": 8315
     },
     {
       "agent": "Exploit Sentinel",
       "role": "maps events to known attack primitives and detects anomalous protocol behavior",
-      "severity": "medium",
-      "confidence": 0.9,
-      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: support queue contains duplicate payment webhook failures after deploy. Risk pattern=medium confidence=0.9.",
+      "severity": "critical",
+      "confidence": 0.64,
+      "finding": "Exploit Sentinel reviewed DeFi risk monitoring signal: duplicate payment webhook failures after deploy. Risk pattern=critical confidence=0.64.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=c85b163e40",
+        "subject_hash=31dcbc5a1e",
         "agent_stage=2"
       ],
-      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize medium items first.",
-      "estimated_tokens": 10077
+      "recommendation": "Run exploit sentinel follow-up pass, capture artifacts, then prioritize critical items first.",
+      "estimated_tokens": 13787
     },
     {
       "agent": "Oracle Auditor",
       "role": "checks oracle drift, stale feeds, and manipulation windows",
-      "severity": "critical",
-      "confidence": 0.91,
-      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: support queue contains duplicate payment webhook failures after deploy. Risk pattern=critical confidence=0.91.",
+      "severity": "low",
+      "confidence": 0.81,
+      "finding": "Oracle Auditor reviewed DeFi risk monitoring signal: duplicate payment webhook failures after deploy. Risk pattern=low confidence=0.81.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=c85b163e40",
+        "subject_hash=31dcbc5a1e",
         "agent_stage=3"
       ],
-      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize critical items first.",
-      "estimated_tokens": 4987
+      "recommendation": "Run oracle auditor follow-up pass, capture artifacts, then prioritize low items first.",
+      "estimated_tokens": 7868
     },
     {
       "agent": "Treasury Guardian",
       "role": "scores treasury exposure and proposes emergency controls",
-      "severity": "high",
-      "confidence": 0.81,
-      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: support queue contains duplicate payment webhook failures after deploy. Risk pattern=high confidence=0.81.",
+      "severity": "medium",
+      "confidence": 0.7,
+      "finding": "Treasury Guardian reviewed DeFi risk monitoring signal: duplicate payment webhook failures after deploy. Risk pattern=medium confidence=0.7.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=c85b163e40",
+        "subject_hash=31dcbc5a1e",
         "agent_stage=4"
       ],
-      "recommendation": "Run treasury guardian follow-up pass, capture artifacts, then prioritize high items first.",
-      "estimated_tokens": 9522
+      "recommendation": "Run treasury guardian follow-up pass, capture artifacts, then prioritize medium items first.",
+      "estimated_tokens": 8805
     },
     {
       "agent": "Incident Reporter",
       "role": "synthesizes operator-grade markdown incident reports",
       "severity": "medium",
-      "confidence": 0.88,
-      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: support queue contains duplicate payment webhook failures after deploy. Risk pattern=medium confidence=0.88.",
+      "confidence": 0.69,
+      "finding": "Incident Reporter reviewed DeFi risk monitoring signal: duplicate payment webhook failures after deploy. Risk pattern=medium confidence=0.69.",
       "evidence": [
         "domain=DeFi risk monitoring",
-        "subject_hash=c85b163e40",
+        "subject_hash=31dcbc5a1e",
         "agent_stage=5"
       ],
       "recommendation": "Run incident reporter follow-up pass, capture artifacts, then prioritize medium items first.",
-      "estimated_tokens": 8753
+      "estimated_tokens": 10377
     }
   ]
 }

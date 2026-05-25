@@ -1,4 +1,4 @@
 Support Agent Studio
-5 specialist agents completed; 3 high-priority findings; 41453 estimated tokens.
-tokens=41453
-daily_projection=3979488
+5 specialist agents completed; 2 high-priority findings; 49152 estimated tokens.
+tokens=49152
+daily=4718592
