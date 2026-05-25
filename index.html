@@ -1,69 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Support Agent — AI Customer Intelligence</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto Support Agent — AI Response Generator</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Nunito',sans-serif;background:#1a0a12;color:#fecdd3;min-height:100vh}
-.rose{background-image:radial-gradient(at 30% 40%,rgba(244,63,94,0.1) 0,transparent 50%),radial-gradient(at 70% 60%,rgba(251,113,133,0.06) 0,transparent 50%)}
-.card{background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:16px;transition:all .3s}
-.card:hover{border-color:rgba(244,63,94,0.4);box-shadow:0 0 30px rgba(244,63,94,0.08)}
-.msg{padding:12px 16px;border-radius:16px;max-width:80%;font-size:14px}
-.msg-bot{background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.2);border-bottom-left-radius:4px}
-.msg-user{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-bottom-right-radius:4px;margin-left:auto}
+  :root{--bg:#0b0f1a;--panel:#131b2e;--border:#1e293b;--teal:#14b8a6;--green:#10b981;--red:#ef4444;--yellow:#eab308;--cyan:#22f7ff;--text:#e2e8f0;--muted:#94a3b8}
+  *{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh}
+  .mono{font-family:'JetBrains Mono',monospace}.panel{background:var(--panel);border:1px solid var(--border);border-radius:12px}
+  .btn{padding:8px 16px;border-radius:8px;font-weight:600;cursor:pointer;border:none;transition:.2s;font-size:14px}
+  .btn-primary{background:var(--teal);color:#fff}.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}.btn-ghost:hover{border-color:var(--teal)}
+  input,select,textarea{background:#0f172a;border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;outline:none;width:100%;font-size:14px;font-family:inherit}
+  textarea{resize:vertical;min-height:120px}
+  textarea:focus,input:focus{border-color:var(--teal)}
+  .badge{padding:3px 10px;border-radius:99px;font-size:11px;font-weight:600}
+  ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+  .fade-in{animation:fadeIn .3s}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .response-box{background:#0f172a;border:1px solid var(--border);border-radius:8px;padding:16px;margin-top:12px;white-space:pre-wrap;line-height:1.7}
+  .quick-btn{background:#1e293b;border:1px solid var(--border);border-radius:8px;padding:10px 14px;color:var(--text);cursor:pointer;font-size:13px;transition:.2s;text-align:left}
+  .quick-btn:hover{border-color:var(--teal);background:#162032}
 </style>
 </head>
-<body class="rose">
-<div class="max-w-7xl mx-auto px-6 py-8">
-  <div class="flex items-center gap-4 mb-8">
-    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-400 to-pink-600 flex items-center justify-center">
-      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+<body>
+<div class="max-w-4xl mx-auto p-4 lg:p-6">
+  <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center text-lg" style="background:var(--teal);color:#fff">💬</div>
+      <div><h1 class="text-xl font-bold">Crypto Support Agent</h1><p class="text-xs" style="color:var(--muted)">AI-powered support response generator for crypto customer issues</p></div>
     </div>
-    <div><h1 class="text-2xl font-bold text-white">Crypto Support Agent</h1><p class="text-xs text-rose-400 tracking-wider">AI CUSTOMER INTELLIGENCE</p></div>
+    <button onclick="clearAll()" class="btn btn-ghost text-sm">Clear</button>
   </div>
-  <div class="grid grid-cols-4 gap-4 mb-6">
-    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Tickets Today</p><p class="text-3xl font-bold">1,247</p></div>
-    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Auto-Resolved</p><p class="text-3xl font-bold text-emerald-400">89<span class="text-lg">%</span></p></div>
-    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">Avg Response</p><p class="text-3xl font-bold">8<span class="text-lg">sec</span></p></div>
-    <div class="card p-5"><p class="text-xs text-rose-700 mb-1">CSAT Score</p><p class="text-3xl font-bold text-rose-400">4.8<span class="text-lg">/5</span></p></div>
+
+  <!-- Quick Scenarios -->
+  <div class="panel p-4 mb-6">
+    <h3 class="font-semibold mb-3">⚡ Quick Scenarios</h3>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-2">
+      <button onclick="loadScenario('stuck_tx')" class="quick-btn">💸 Stuck Transaction</button>
+      <button onclick="loadScenario('failed_swap')" class="quick-btn">🔄 Failed Swap</button>
+      <button onclick="loadScenario('wallet_connect')" class="quick-btn">🔗 Wallet Connection Issue</button>
+      <button onclick="loadScenario('missing_funds')" class="quick-btn">❓ Missing Funds</button>
+      <button onclick="loadScenario('bridge_delay')" class="quick-btn">🌉 Bridge Delay</button>
+      <button onclick="loadScenario('gas_error')" class="quick-btn">⛽ Gas Error</button>
+    </div>
   </div>
-  <div class="grid grid-cols-3 gap-4 mb-6">
-    <div class="col-span-2 card p-6">
-      <h3 class="text-sm font-semibold text-rose-300 mb-4">Live Support Chat</h3>
-      <div class="space-y-3 mb-4">
-        <div class="msg msg-user"><p class="text-sm">I sent ETH to the wrong address, can you help?</p></div>
-        <div class="msg msg-bot"><p class="text-sm text-rose-200">I understand this is stressful. Let me check the transaction status. Could you share the transaction hash? I'll trace the funds and check if recovery is possible.</p></div>
-        <div class="msg msg-user"><p class="text-sm">0x7a25...89bc</p></div>
-        <div class="msg msg-bot"><p class="text-sm text-rose-200">I've traced your 2.5 ETH transfer. The destination address is a known exchange deposit address (Binance). I'm initiating a recovery request with their support team. Typical recovery time: 3-5 business days. I'll create a ticket and notify you of progress.</p></div>
+
+  <!-- Input Form -->
+  <div class="panel p-5 mb-6">
+    <h3 class="font-semibold mb-4">📝 Customer Issue Details</h3>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="text-xs" style="color:var(--muted)">ISSUE CATEGORY</label>
+        <select id="category">
+          <option>Transaction Issue</option>
+          <option>Wallet Problem</option>
+          <option>Swap/DEX Issue</option>
+          <option>Bridge Problem</option>
+          <option>Account Access</option>
+          <option>Staking Issue</option>
+          <option>NFT Problem</option>
+          <option>General Inquiry</option>
+        </select>
       </div>
+      <div>
+        <label class="text-xs" style="color:var(--muted)">SEVERITY</label>
+        <select id="severity">
+          <option value="low">Low — General question</option>
+          <option value="medium" selected>Medium — Functionality impacted</option>
+          <option value="high">High — Funds at risk</option>
+          <option value="critical">Critical — Active exploit</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="text-xs" style="color:var(--muted)">BLOCKCHAIN / PLATFORM</label>
+        <input id="platform" placeholder="Ethereum, Solana, BSC, etc.">
+      </div>
+      <div>
+        <label class="text-xs" style="color:var(--muted)">TX HASH / WALLET ADDRESS (optional)</label>
+        <input id="txHash" placeholder="0x...">
+      </div>
+    </div>
+    <div class="mb-4">
+      <label class="text-xs" style="color:var(--muted)">CUSTOMER MESSAGE *</label>
+      <textarea id="customerMsg" placeholder="Paste or describe the customer's issue:
+
+e.g. 'I tried to swap 2 ETH for USDC on Uniswap but the transaction has been pending for 2 hours. The transaction hash is 0xabc... I'm worried my funds are stuck.'"></textarea>
+    </div>
+    <div class="mb-4">
+      <label class="text-xs" style="color:var(--muted)">ADDITIONAL CONTEXT (optional)</label>
+      <input id="context" placeholder="Any relevant context: wallet type, network conditions, previous interactions, etc.">
+    </div>
+    <button onclick="generateResponse()" class="btn btn-primary">💬 Generate Support Response</button>
+  </div>
+
+  <!-- Response Output -->
+  <div id="responsePanel" class="hidden panel p-5 mb-6 fade-in">
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+      <h3 class="font-semibold">Generated Response</h3>
       <div class="flex gap-2">
-        <input type="text" placeholder="Type your message..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white outline-none focus:border-rose-400">
-        <button class="px-4 py-2 rounded-xl bg-rose-500 text-white text-sm font-semibold hover:bg-rose-400 transition">Send</button>
+        <button onclick="copyResponse()" class="btn btn-ghost text-xs">📋 Copy</button>
+        <button onclick="toggleTone('formal')" class="btn btn-ghost text-xs" id="btn-formal">Formal</button>
+        <button onclick="toggleTone('friendly')" class="btn btn-ghost text-xs" id="btn-friendly">Friendly</button>
+        <button onclick="toggleTone('technical')" class="btn btn-ghost text-xs" id="btn-technical">Technical</button>
       </div>
     </div>
-    <div class="card p-6">
-      <h3 class="text-sm font-semibold text-rose-300 mb-4">Top Issues</h3>
-      <div class="space-y-3">
-        <div><div class="flex justify-between text-xs mb-1"><span>Wrong address</span><span class="text-rose-400">34%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-rose-500" style="width:34%"></div></div></div>
-        <div><div class="flex justify-between text-xs mb-1"><span>Stuck transaction</span><span class="text-rose-400">28%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-pink-500" style="width:28%"></div></div></div>
-        <div><div class="flex justify-between text-xs mb-1"><span>Wallet access</span><span class="text-rose-400">22%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-fuchsia-500" style="width:22%"></div></div></div>
-        <div><div class="flex justify-between text-xs mb-1"><span>Swap failure</span><span class="text-rose-400">16%</span></div><div class="h-2 rounded-full bg-gray-800"><div class="h-full rounded-full bg-purple-500" style="width:16%"></div></div></div>
-      </div>
+    <div id="responseMeta" class="flex gap-3 mb-3"></div>
+    <div id="responseContent" class="response-box"></div>
+    <div class="flex gap-2 mt-4">
+      <button onclick="generateFollowup()" class="btn btn-ghost text-xs">🔄 Generate Follow-up</button>
+      <button onclick="generateEscalation()" class="btn btn-ghost text-xs" style="color:var(--yellow)">⚠️ Generate Escalation</button>
     </div>
   </div>
-  <div class="card p-6">
-    <div class="flex items-center gap-3 mb-4">
-      <div class="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center"><svg class="w-4 h-4 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0"/></svg></div>
-      <div><h3 class="text-sm font-semibold text-white">Agent Intelligence</h3><p class="text-xs text-gray-500">MiMo-powered support automation</p></div>
-    </div>
-    <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20">
-      <p class="text-sm font-medium mb-1">Escalation Pattern Detected</p>
-      <p class="text-xs text-gray-400">12 tickets in last hour about "failed swap on Uniswap V4". Cross-referencing with on-chain data shows Uniswap V4 router experiencing 3.2% revert rate on ETH→USDC path. Agent auto-created status page update and proactive notification to 847 affected users.</p>
-    </div>
+
+  <!-- Escalation Template -->
+  <div id="escalationPanel" class="hidden panel p-5 mb-6 fade-in">
+    <h3 class="font-semibold mb-3">⚠️ Escalation Template</h3>
+    <div id="escalationContent" class="response-box" style="border-left:3px solid var(--yellow)"></div>
+  </div>
+
+  <!-- Knowledge Base -->
+  <div class="panel p-5">
+    <h3 class="font-semibold mb-3">📚 Common Solutions</h3>
+    <div class="space-y-2" id="kb"></div>
   </div>
 </div>
+
+<script>
+const $ = id => document.getElementById(id);
+let currentTone = 'friendly';
+let lastIssue = null;
+
+const SCENARIOS = {
+  stuck_tx: { category:'Transaction Issue', severity:'medium', platform:'Ethereum', msg:'I sent ETH 2 hours ago and the transaction is still pending. The gas fee seems too low. My transaction hash is 0x1234abcd... Can you help me speed it up or cancel it?', context:'User is on MetaMask, transaction shows as pending' },
+  failed_swap: { category:'Swap/DEX Issue', severity:'medium', platform:'Ethereum', msg:'I tried to swap 500 USDC for ETH on Uniswap but the swap failed and I lost gas fees. The error says "execution reverted". I still have my USDC but lost about $15 in gas.', context:'Using Uniswap V3 on mainnet' },
+  wallet_connect: { category:'Wallet Problem', severity:'low', platform:'Solana', msg:'My Phantom wallet keeps disconnecting from the dApp. Every time I try to sign a transaction, the connection drops. I\'ve tried refreshing and reconnecting multiple times.', context:'Chrome browser, Phantom extension v23' },
+  missing_funds: { category:'Transaction Issue', severity:'high', platform:'BSC', msg:'I bridged 2 BNB from BSC to Ethereum using the bridge 3 hours ago but the funds haven\'t arrived on Ethereum. The BSC transaction was confirmed but I can\'t find any corresponding Ethereum transaction.', context:'Bridge used: Multichain' },
+  bridge_delay: { category:'Bridge Problem', severity:'high', platform:'Polygon', msg:'I bridged USDC from Polygon to Arbitrum 12 hours ago. The Polygon transaction is confirmed but I haven\'t received anything on Arbitrum. The bridge UI says "processing".', context:'Using Stargate bridge, amount: $5000 USDC' },
+  gas_error: { category:'Transaction Issue', severity:'medium', platform:'Ethereum', msg:'Every transaction I try to send fails with "out of gas" error even though I\'m setting gas limit to 300000. This started happening today. I\'m using Ledger hardware wallet.', context:'Ledger Nano X connected via MetaMask' },
+};
+
+function loadScenario(key) {
+  const s = SCENARIOS[key];
+  $('category').value = s.category;
+  $('severity').value = s.severity;
+  $('platform').value = s.platform;
+  $('customerMsg').value = s.msg;
+  $('context').value = s.context;
+}
+
+function generateResponse() {
+  const msg = $('customerMsg').value.trim();
+  if (!msg) { alert('Enter the customer\'s message'); return; }
+
+  const issue = {
+    category: $('category').value,
+    severity: $('severity').value,
+    platform: $('platform').value || 'blockchain',
+    message: msg,
+    context: $('context').value,
+    txHash: $('txHash').value,
+  };
+  lastIssue = issue;
+
+  const response = buildResponse(issue, currentTone);
+  $('responsePanel').classList.remove('hidden');
+  $('responseContent').textContent = response;
+  $('responseMeta').innerHTML = `
+    <span class="badge" style="background:${sevColor(issue.severity)}22;color:${sevColor(issue.severity)}">${issue.severity.toUpperCase()}</span>
+    <span class="badge" style="background:#1e293b;color:var(--cyan)">${issue.category}</span>
+    <span class="badge" style="background:#1e293b;color:var(--teal)">${currentTone}</span>
+  `;
+
+  // Update KB
+  renderKB(issue.category);
+}
+
+function buildResponse(issue, tone) {
+  const greetings = {
+    formal: 'Thank you for reaching out to our support team.',
+    friendly: 'Hey there! Thanks for getting in touch — I\'m here to help! 😊',
+    technical: 'Acknowledged. Analyzing your reported issue.',
+  };
+  const closings = {
+    formal: 'Please do not hesitate to reach out if you require further assistance.',
+    friendly: 'Hope this helps! Let me know if you need anything else — happy to assist! 🙌',
+    technical: 'If the issue persists, provide the full error log and RPC response for further diagnosis.',
+  };
+
+  let body = '';
+  const cat = issue.category.toLowerCase();
+  const sev = issue.severity;
+
+  if (cat.includes('transaction') || cat.includes('stuck')) {
+    body = buildTxResponse(issue, tone);
+  } else if (cat.includes('swap') || cat.includes('dex')) {
+    body = buildSwapResponse(issue, tone);
+  } else if (cat.includes('wallet')) {
+    body = buildWalletResponse(issue, tone);
+  } else if (cat.includes('bridge')) {
+    body = buildBridgeResponse(issue, tone);
+  } else {
+    body = buildGenericResponse(issue, tone);
+  }
+
+  let prefix = '';
+  if (sev === 'critical') prefix = '🔴 **URGENT** — I understand this is time-sensitive and involves potential fund risk. Treating this as highest priority.\n\n';
+  else if (sev === 'high') prefix = '🟠 **Priority Case** — I can see this involves your funds, so I\'m escalating the attention on this.\n\n';
+
+  return `${greetings[tone]}\n\n${prefix}${body}\n\n${closings[tone]}`;
+}
+
+function buildTxResponse(issue, tone) {
+  const hasHash = issue.txHash || issue.message.match(/0x[0-9a-fA-F]{10,}/);
+  let text = '**Regarding your transaction issue:**\n\n';
+  
+  if (issue.message.match(/pending|stuck|queued/i)) {
+    text += 'I understand your transaction has been pending for a while. Here\'s what we can do:\n\n';
+    text += '1. **Check transaction status** — Please verify the current status on a block explorer:\n';
+    text += `   → https://${issue.platform.toLowerCase() === 'ethereum' ? 'etherscan.io' : issue.platform.toLowerCase() === 'bsc' ? 'bscscan.com' : 'polygonscan.com'}/tx/${hasHash ? issue.txHash || issue.message.match(/0x[0-9a-fA-F]+/)?.[0] : '[YOUR_TX_HASH]'}\n\n`;
+    text += '2. **If still pending:**\n';
+    text += '   - The transaction likely has a low gas fee. You can:\n';
+    text += '     a) **Speed up** — Submit the same transaction with higher gas (your wallet should have a "Speed Up" option)\n';
+    text += '     b) **Cancel** — Send a 0 ETH transaction to yourself with the same nonce but higher gas\n\n';
+    text += '3. **If confirmed but funds missing:** The funds are NOT lost — they\'re on-chain. We just need to trace where they went.\n\n';
+  } else if (issue.message.match(/failed|revert|error/i)) {
+    text += 'I see your transaction failed. Here\'s what happened:\n\n';
+    text += '- **Failed transactions still consume gas** — This is by design on EVM chains. The gas fee goes to validators for processing.\n';
+    text += '- **Your funds should be intact** — A reverted transaction means the state was rolled back. Check your wallet balance.\n';
+    text += '- **Common causes:** Slippage too low, insufficient gas limit, contract incompatibility, or front-running.\n\n';
+    text += 'Could you share the exact error message from the transaction receipt?\n';
+  } else {
+    text += 'I\'d like to help investigate this transaction. To assist better:\n';
+    text += '1. Please share the transaction hash\n';
+    text += '2. Which wallet are you using (MetaMask, Trust, etc.)?\n';
+    text += '3. What were you trying to do when the issue occurred?\n';
+  }
+  return text;
+}
+
+function buildSwapResponse(issue, tone) {
+  let text = '**Regarding your swap issue:**\n\n';
+  text += 'I understand the swap didn\'t complete as expected. Let me break down what likely happened:\n\n';
+  text += '**If the swap reverted:**\n';
+  text += '- Your original tokens are safe — they were returned to your wallet after the revert\n';
+  text += '- Gas fees were consumed because the network still processed the attempt\n';
+  text += '- Common fixes: increase slippage tolerance to 0.5-1%, or try a smaller amount\n\n';
+  text += '**If tokens are missing after swap:**\n';
+  text += '- Check if you received a different token (sometimes the output token differs from expected)\n';
+  text += '- Add the token contract address to your wallet — it might be there but hidden\n';
+  text += '- Check the transaction receipt for the exact token transfers\n\n';
+  text += 'Would you like me to help trace the exact token movements on-chain?\n';
+  return text;
+}
+
+function buildWalletResponse(issue, tone) {
+  let text = '**Regarding your wallet issue:**\n\n';
+  if (issue.message.match(/disconnect|connection/i)) {
+    text += 'Wallet disconnection issues are common and usually fixable:\n\n';
+    text += '1. **Clear browser cache and cookies** for the dApp\n';
+    text += '2. **Disconnect and reconnect** — Go to the dApp settings, disconnect wallet, then reconnect fresh\n';
+    text += '3. **Update your wallet extension** — Make sure you\'re on the latest version\n';
+    text += '4. **Try a different browser** — Some extensions conflict with wallet connections\n';
+    text += '5. **Disable other wallet extensions** temporarily if you have multiple installed\n\n';
+  } else if (issue.message.match(/seed|recovery|import/i)) {
+    text += '⚠️ **SECURITY WARNING:** Never share your seed phrase or private key with anyone, including support.\n\n';
+    text += 'For wallet recovery:\n';
+    text += '- Use your 12/24-word seed phrase directly in the wallet app\n';
+    text += '- Make sure you\'re on the OFFICIAL wallet website/app (check URLs carefully)\n';
+    text += '- If your seed phrase is compromised, immediately transfer funds to a new wallet\n';
+  } else {
+    text += 'To help diagnose your wallet issue:\n';
+    text += '1. Which wallet are you using?\n';
+    text += '2. What error message do you see?\n';
+    text += '3. Have you tried disconnecting and reconnecting?\n';
+  }
+  return text;
+}
+
+function buildBridgeResponse(issue, tone) {
+  let text = '**Regarding your bridge transfer:**\n\n';
+  text += 'Bridge delays are unfortunately common. Here\'s the situation and what to do:\n\n';
+  text += '**Why it\'s delayed:**\n';
+  text += '- Most bridges require multiple block confirmations on the source chain\n';
+  text += '- High network congestion can cause processing delays (usually 10 min to 24 hours)\n';
+  text += '- Some bridges have manual verification for large amounts\n\n';
+  text += '**What to check:**\n';
+  text += '1. Verify the source transaction is confirmed on the block explorer\n';
+  text += '2. Check the bridge\'s UI for your transfer status\n';
+  text += '3. Look for a "claim" button — some bridges require manual claiming\n';
+  text += `4. Check the bridge\'s status page for any known issues\n\n`;
+  text += '**If it\'s been over 24 hours:**\n';
+  text += 'Please provide: source TX hash, bridge name, amount, and both chain addresses. We\'ll escalate to the bridge team.\n';
+  return text;
+}
+
+function buildGenericResponse(issue, tone) {
+  return `I'd be happy to help with your ${issue.category.toLowerCase()} issue.\n\nTo assist you as quickly as possible, could you provide:\n1. A detailed description of what happened\n2. Any error messages you received\n3. Transaction hashes (if applicable)\n4. Screenshots of the issue\n\nThe more details you provide, the faster we can resolve this for you.\n`;
+}
+
+function generateFollowup() {
+  if (!lastIssue) return;
+  $('responseContent').textContent += '\n\n--- FOLLOW-UP ---\n\nJust checking in — were you able to try the steps I mentioned? If the issue persists, I\'m happy to:\n\n• Walk you through the process step-by-step\n• Escalate to our technical team for deeper investigation\n• Provide alternative solutions\n\nLet me know how it went!';
+}
+
+function generateEscalation() {
+  if (!lastIssue) return;
+  $('escalationPanel').classList.remove('hidden');
+  $('escalationContent').textContent = `ESCALATION NOTICE
+━━━━━━━━━━━━━━━━━
+Severity: ${lastIssue.severity.toUpperCase()}
+Category: ${lastIssue.category}
+Platform: ${lastIssue.platform}
+${lastIssue.txHash ? 'TX/Address: ' + lastIssue.txHash : ''}
+
+Customer Issue Summary:
+${lastIssue.message.slice(0, 500)}
+
+${lastIssue.context ? 'Additional Context: ' + lastIssue.context : ''}
+
+Action Required:
+- Customer has been provided initial guidance
+- ${lastIssue.severity === 'critical' || lastIssue.severity === 'high' ? 'Funds potentially at risk — prioritize' : 'Standard processing queue'}
+- Next step: ${lastIssue.severity === 'critical' ? 'Immediate investigation + potential contract pause review' : 'Deep technical investigation by L2 team'}
+
+Recommended Team: ${lastIssue.category.includes('Bridge') ? 'Bridge Operations' : lastIssue.category.includes('Transaction') ? 'Blockchain Operations' : lastIssue.category.includes('Wallet') ? 'Wallet Support' : 'General Support'}`;
+}
+
+function toggleTone(tone) {
+  currentTone = tone;
+  ['formal','friendly','technical'].forEach(t => $('btn-'+t).style.borderColor = t === tone ? 'var(--teal)' : 'var(--border)');
+  if (lastIssue) generateResponse();
+}
+
+function copyResponse() {
+  navigator.clipboard.writeText($('responseContent').textContent);
+  alert('Response copied to clipboard!');
+}
+
+function clearAll() {
+  ['customerMsg','platform','txHash','context'].forEach(id => $(id).value = '');
+  $('severity').value = 'medium';
+  $('responsePanel').classList.add('hidden');
+  $('escalationPanel').classList.add('hidden');
+  lastIssue = null;
+}
+
+function renderKB(category) {
+  const solutions = {
+    'Transaction Issue': ['Speed up: Resubmit with higher gas via wallet "Speed Up" button', 'Cancel: Send 0 ETH to self with same nonce + higher gas', 'Check status: Paste TX hash on block explorer (etherscan.io)', 'Verify funds: Failed TXs = state reverted, funds should be safe'],
+    'Swap/DEX Issue': ['Increase slippage: 0.5% for stablecoins, 1-3% for volatile tokens', 'Check output token: It might have been received but not displayed', 'Try smaller amount: Large swaps may exceed available liquidity', 'Use different DEX: If Uniswap fails, try 1inch or Sushi'],
+    'Wallet Problem': ['Clear cache: Browser settings → Clear site data for the dApp', 'Update wallet: Make sure extension is latest version', 'Reconnect: Disconnect wallet from dApp, then reconnect', 'Try incognito: Rules out extension conflicts'],
+    'Bridge Problem': ['Check source TX: Must be confirmed before bridge processes', 'Check destination: Look for "claim" button on bridge UI', 'Wait: Most bridges complete in 10-60 minutes', 'Status page: Check bridge\'s status page for known delays'],
+  };
+  const s = solutions[category] || ['Check block explorer for transaction details', 'Verify you\'re on the correct network', 'Ensure sufficient balance for gas fees', 'Try the action again after a few minutes'];
+  $('kb').innerHTML = s.map(s => `<div class="flex items-start gap-2 p-2 rounded" style="background:#0f172a"><span style="color:var(--teal)">→</span><span class="text-sm">${s}</span></div>`).join('');
+}
+
+function sevColor(s) { return s === 'critical' ? 'var(--red)' : s === 'high' ? 'var(--orange)' : s === 'medium' ? 'var(--yellow)' : 'var(--green)'; }
+renderKB('Transaction Issue');
+</script>
+<script src="static/upgrade.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+[project]
+name = "agent-support-agent"
+version = "1.0.0"
+description = "AI support desk for wallet issues, transaction debugging, escalation routing, and knowledge-base improvement."
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

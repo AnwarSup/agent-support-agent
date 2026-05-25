@@ -1,0 +1,10 @@
+{
+  "scenario": "bridge transfer stuck",
+  "signals": {
+    "ticket_severity": 50,
+    "tx_confirmation_age": 57,
+    "refund_risk": 64,
+    "user_sentiment": 71,
+    "kb_gap_score": 78
+  }
+}
